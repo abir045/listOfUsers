@@ -1,8 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import ReactPaginate from "react-paginate";
 import Switch from "./images/switch.svg";
 import switchOn from "./images/switch-on.svg";
+
+import { ImUser } from "react-icons/im";
+import { BsCalendarDate } from "react-icons/bs";
 
 function App() {
   const [error, setError] = useState(null);
@@ -19,9 +22,11 @@ function App() {
   const [searchParam] = useState(["name", "email", "login"]);
 
   //setting filter parameters
+
   const [filterParam, setFilterParam] = useState(["all"]);
 
   // number of users to be shown per page
+
   const [numberOfUsers] = useState(10);
 
   //getting index of  last user on that page
@@ -75,7 +80,7 @@ function App() {
   //handleClick function
 
   const handleClick = () => {
-    //toggle
+    //toggle tile view
     setTileView((tileView) => !tileView);
   };
 
@@ -87,14 +92,15 @@ function App() {
     return <>Loading...</>;
   } else {
     return (
-      <div className="flex-col mx-14 my-10 space-y-10 ">
+      <div className="flex-col mx-10 my-10 space-y-10 ">
         <h1 className="font-bold ">User List</h1>
 
+        {/* search bar */}
         <div className="flex justify-between">
           <form className="flex">
             <label
               for="default-search"
-              class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
+              class="mb-2  text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
             >
               Search
             </label>
@@ -108,7 +114,6 @@ function App() {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                   data-darkreader-inline-stroke=""
-                  // style="--darkreader-inline-stroke:currentColor;"
                 >
                   <path
                     stroke-linecap="round"
@@ -120,7 +125,7 @@ function App() {
               </div>
               <input
                 type="text"
-                className="block p-4 pl-10 w-[1/2] text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block p-4 px-10 text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search..."
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
@@ -167,7 +172,7 @@ function App() {
         <table>
           <thead>
             <tr
-              className="flex space-x-[280px]"
+              className="flex space-x-[220px]"
               style={{ display: tileView ? "none" : "" }}
             >
               <th className="flex">Name</th>
@@ -182,7 +187,7 @@ function App() {
             <table>
               <tbody>
                 <tr
-                  className="flex space-x-[120px]"
+                  className="flex space-x-[100px]"
                   style={{
                     flexDirection: tileView ? "column" : "",
                     border: tileView ? "1px solid black" : "",
@@ -191,7 +196,7 @@ function App() {
                   }}
                 >
                   <td>
-                    <div className="flex space-x-6">
+                    <div className="flex space-x-3">
                       <img
                         className="flex rounded-full "
                         src={item.picture.thumbnail}
@@ -199,7 +204,7 @@ function App() {
                       />
                       <div className="flex-col">
                         <p className="flex">
-                          {item.name.last},{item.name.first}
+                          {item.name.last}, {item.name.first}
                         </p>
                         <p>{item.email}</p>
                       </div>
@@ -207,15 +212,26 @@ function App() {
                   </td>
                   <td>
                     {/* <div className="flex"> */}
-                    <p className="flex">
+                    <p className="flex  ml-[-26%] items-center">
+                      <BsCalendarDate
+                        className="flex mx-2"
+                        style={{ display: !tileView ? "none" : "" }}
+                      />
+
                       {moment(item.registered.date).utc().format("YYYY-MM-DD")}
                     </p>
                     {/* </div> */}
                   </td>
                   <td>
-                    <div className="flex ">
-                      <p>{item.login.username}</p>
-                    </div>
+                    {/* <div className="flex"> */}
+                    <p className="flex mx-2 ml-[-26%]  items-center">
+                      <ImUser
+                        className="flex mx-2 "
+                        style={{ display: !tileView ? "none" : "" }}
+                      />
+                      {item.login.username}
+                    </p>
+                    {/* </div> */}
                   </td>
                 </tr>
               </tbody>
