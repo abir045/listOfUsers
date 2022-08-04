@@ -1,14 +1,15 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import moment from "moment";
 import ReactPaginate from "react-paginate";
+import Switch from "./images/switch.svg";
+import switchOn from "./images/switch-on.svg";
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [tileView, setTileView] = useState(false);
 
   //setting search query to empty string
   const [q, setQ] = useState("");
@@ -41,6 +42,7 @@ function App() {
     setCurrentPage(selectedPage);
   };
 
+  //fetching users
   useEffect(() => {
     const getData = async () => {
       const userData = await fetch("https://randomuser.me/api/?results=50");
@@ -68,6 +70,13 @@ function App() {
         });
       }
     });
+  };
+
+  //handleClick function
+
+  const handleClick = () => {
+    //toggle
+    setTileView((tileView) => !tileView);
   };
 
   console.log(items);
@@ -122,30 +131,45 @@ function App() {
             onChange={(e) => {
               setFilterParam(e.target.value);
             }}
-            className="flex flex-row space-x-10"
+            className="flex flex-row space-x-5 items-center"
           >
             <legend className="flex">Filter by:</legend>
 
-            <div className="space-x-5">
+            <div className="space-x-3">
               <input type="radio" id="all" name="gender" value="all" />
               <label for="all">All</label>
             </div>
 
-            <div className="space-x-5">
+            <div className="space-x-3">
               <input type="radio" id="male" name="gender" value="male" />
               <label for="male">Male</label>
             </div>
 
-            <div className="space-x-5">
+            <div className="space-x-3">
               <input type="radio" id="female" name="gender" value="female" />
               <label for="female">Female</label>
             </div>
           </div>
+
+          <button
+            onClick={handleClick}
+            className="flex space-x-5 items-center "
+          >
+            <p className="flex">Tileview</p>
+            {tileView ? (
+              <img className="flex w-[50px] " src={switchOn} />
+            ) : (
+              <img className="flex w-[50px] " src={Switch} />
+            )}
+          </button>
         </div>
 
         <table>
           <thead>
-            <tr className="flex space-x-[280px]">
+            <tr
+              className="flex space-x-[280px]"
+              style={{ display: tileView ? "none" : "" }}
+            >
               <th className="flex">Name</th>
               <th className="flex">Registration Date</th>
               <th className="flex">Username</th>
@@ -157,7 +181,15 @@ function App() {
           return (
             <table>
               <tbody>
-                <tr className="flex space-x-[120px]">
+                <tr
+                  className="flex space-x-[120px]"
+                  style={{
+                    flexDirection: tileView ? "column" : "",
+                    border: tileView ? "1px solid black" : "",
+                    borderRadius: tileView ? "15px" : "",
+                    padding: tileView ? "20px" : "",
+                  }}
+                >
                   <td>
                     <div className="flex space-x-6">
                       <img
@@ -174,16 +206,14 @@ function App() {
                     </div>
                   </td>
                   <td>
-                    <div className="flex">
-                      <p className="flex">
-                        {moment(item.registered.date)
-                          .utc()
-                          .format("YYYY-MM-DD")}
-                      </p>
-                    </div>
+                    {/* <div className="flex"> */}
+                    <p className="flex">
+                      {moment(item.registered.date).utc().format("YYYY-MM-DD")}
+                    </p>
+                    {/* </div> */}
                   </td>
                   <td>
-                    <div className="flex mx-46">
+                    <div className="flex ">
                       <p>{item.login.username}</p>
                     </div>
                   </td>
