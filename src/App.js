@@ -154,7 +154,7 @@ function App() {
             onClick={handleClick}
             className="flex space-x-5 items-center "
           >
-            <p className="flex">Tileview</p>
+            <p className="flex">Tile view</p>
             {tileView ? (
               <img className="flex w-[50px] " src={switchOn} />
             ) : (
