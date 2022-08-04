@@ -19,7 +19,7 @@ function App() {
 
   //setting search parameters
 
-  const [searchParam] = useState(["name", "email", "username"]);
+  const [searchParam] = useState(["name", "email", "login"]);
 
   //setting filter parameters
 
@@ -98,17 +98,11 @@ function App() {
         {/* search bar */}
         <div className="flex justify-between">
           <form className="flex">
-            <label
-              for="default-search"
-              class="mb-2  text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
-            >
-              Search
-            </label>
             <div class="relative">
-              <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+              <div class="flex absolute inset-y-0 left-5 items-center pl-3 pointer-events-none">
                 <svg
                   aria-hidden="true"
-                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  className="w-5 h-5  text-gray-500 dark:text-gray-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -125,10 +119,10 @@ function App() {
               </div>
               <input
                 type="text"
-                className="block p-4 px-10 text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search..."
+                className="block p-2 m-2 px-16 w-full  text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
+                placeholder="Search..."
               />
             </div>
           </form>
@@ -240,7 +234,7 @@ function App() {
           );
         })}
         <ReactPaginate
-          className="flex justify-end space-x-10"
+          className="flex justify-end space-x-10 w-full"
           previousLabel={"<<"}
           nextLabel={">>"}
           pageCount={totalPages}
