@@ -17,3 +17,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+.pagination__link--active a{
+  border-top: 3px solid blue;
+  
+}
