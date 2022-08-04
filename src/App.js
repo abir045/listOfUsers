@@ -19,7 +19,7 @@ function App() {
 
   //setting search parameters
 
-  const [searchParam] = useState(["name", "email", "login"]);
+  const [searchParam] = useState(["name", "email", "username"]);
 
   //setting filter parameters
 
@@ -93,7 +93,7 @@ function App() {
   } else {
     return (
       <div className="flex-col mx-10 my-10 space-y-10 ">
-        <h1 className="font-bold ">User List</h1>
+        <h1 className="font-bold text-3xl">User List</h1>
 
         {/* search bar */}
         <div className="flex justify-between">
@@ -172,7 +172,7 @@ function App() {
         <table>
           <thead>
             <tr
-              className="flex space-x-[220px]"
+              className="flex space-x-[250px] bg-gray-100 p-4 w-full"
               style={{ display: tileView ? "none" : "" }}
             >
               <th className="flex">Name</th>
@@ -184,10 +184,10 @@ function App() {
 
         {search(currentUsers).map((item) => {
           return (
-            <table>
+            <table className="auto">
               <tbody>
                 <tr
-                  className="flex space-x-[100px]"
+                  className="flex space-x-[100px] mx-4 px-2 my-4 "
                   style={{
                     flexDirection: tileView ? "column" : "",
                     border: tileView ? "1px solid black" : "",
@@ -212,9 +212,9 @@ function App() {
                   </td>
                   <td>
                     {/* <div className="flex"> */}
-                    <p className="flex  ml-[-26%] items-center">
+                    <p className="flex items-center">
                       <BsCalendarDate
-                        className="flex mx-2"
+                        className="flex mx-2 ml-[-25%]"
                         style={{ display: !tileView ? "none" : "" }}
                       />
 
@@ -224,9 +224,9 @@ function App() {
                   </td>
                   <td>
                     {/* <div className="flex"> */}
-                    <p className="flex mx-2 ml-[-26%]  items-center">
+                    <p className="flex mx-2  items-center">
                       <ImUser
-                        className="flex mx-2 "
+                        className="flex mx-2 ml-[-32%]"
                         style={{ display: !tileView ? "none" : "" }}
                       />
                       {item.login.username}
@@ -234,6 +234,7 @@ function App() {
                     {/* </div> */}
                   </td>
                 </tr>
+                <hr />
               </tbody>
             </table>
           );
