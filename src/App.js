@@ -14,7 +14,8 @@ function App() {
   const [q, setQ] = useState("");
 
   //setting search parameters
-  const [searchParam] = useState(["name", "gender", "email"]);
+
+  const [searchParam] = useState(["name", "email", "login"]);
 
   //setting filter parameters
   const [filterParam, setFilterParam] = useState(["all"]);
@@ -123,7 +124,6 @@ function App() {
             }}
             className="flex flex-row space-x-10"
           >
-            {/* <fieldset className="flex"> */}
             <legend className="flex">Filter by:</legend>
 
             <div className="space-x-5">
@@ -140,7 +140,6 @@ function App() {
               <input type="radio" id="female" name="gender" value="female" />
               <label for="female">Female</label>
             </div>
-            {/* </fieldset> */}
           </div>
         </div>
 
