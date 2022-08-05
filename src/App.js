@@ -181,12 +181,16 @@ function App() {
             <table className="auto">
               <tbody>
                 <tr
-                  className="flex space-x-[100px] mx-4 px-2 my-4 "
+                  className="flex space-x-[100px] mx-4 px-2 my-4  items-center"
                   style={{
                     flexDirection: tileView ? "column" : "",
                     border: tileView ? "1px solid black" : "",
-                    borderRadius: tileView ? "15px" : "",
+                    borderRadius: tileView ? "5px" : "",
                     padding: tileView ? "20px" : "",
+                    width: tileView ? "350px" : "",
+                    boxShadow: tileView
+                      ? "0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3)"
+                      : "",
                   }}
                 >
                   <td>
@@ -206,9 +210,9 @@ function App() {
                   </td>
                   <td>
                     {/* <div className="flex"> */}
-                    <p className="flex items-center">
+                    <p className="flex items-center  w-[260px] text-center ">
                       <BsCalendarDate
-                        className="flex mx-2 ml-[-25%]"
+                        className="flex mx-2"
                         style={{ display: !tileView ? "none" : "" }}
                       />
 
@@ -218,10 +222,12 @@ function App() {
                   </td>
                   <td>
                     {/* <div className="flex"> */}
-                    <p className="flex mx-2  items-center">
+                    <p className="flex mx-2  items-center w-[260px] text-center">
                       <ImUser
-                        className="flex mx-2 ml-[-32%]"
-                        style={{ display: !tileView ? "none" : "" }}
+                        className="flex mx-2 "
+                        style={{
+                          display: !tileView ? "none" : "",
+                        }}
                       />
                       {item.login.username}
                     </p>
