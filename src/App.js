@@ -166,7 +166,7 @@ function App() {
         <table>
           <thead>
             <tr
-              className="flex space-x-[250px] bg-gray-100 p-4 w-full"
+              className="flex space-x-[270px] bg-gray-100 p-4  px-10 w-full h-full"
               style={{ display: tileView ? "none" : "" }}
             >
               <th className="flex">Name</th>
